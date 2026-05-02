@@ -7,13 +7,14 @@ jobs:
   build-and-push-to-gcr:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
     - name: Set up JDK 11
-      uses: actions/setup-java@v1
+      uses: actions/setup-java@be666c2fcd27ec809703dec50e508c2fdc7f6654 # v5.2.0
       with:
+        distribution: 'temurin'
         java-version: 11
     - name: Cache local Maven repository
-      uses: actions/cache@v2
+      uses: actions/cache@27d5ce7f107fe9357f9df03efb73ab90386fccae # v5.0.5
       with:
         path: ~/.m2/repository
         key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
@@ -28,7 +29,7 @@ jobs:
       id: get_tag_name
       run: echo ::set-output name=GIT_TAG_NAME::${GITHUB_REF/refs\/tags\//}
     - name: Build and Upload ICU4C-Demos Container
-      uses: RafikFarhad/push-to-gcr-github-action@v3
+      uses: RafikFarhad/push-to-gcr-github-action@e6fd4fb5c4b92fb4cfe55900729ec9edfe9506ab # v5
       with:
         gcloud_service_key: ${{ secrets.GCLOUD_SERVICE_KEY }}
         registry: us.gcr.io
@@ -39,7 +40,7 @@ jobs:
         context: .
         build_args: ICU_PATH=system
     - name: Build and Upload ICU4J-Demos Container
-      uses: RafikFarhad/push-to-gcr-github-action@v3
+      uses: RafikFarhad/push-to-gcr-github-action@e6fd4fb5c4b92fb4cfe55900729ec9edfe9506ab # v5
       with:
         gcloud_service_key: ${{ secrets.GCLOUD_SERVICE_KEY }}
         registry: us.gcr.io
