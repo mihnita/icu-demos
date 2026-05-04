@@ -10,6 +10,15 @@
     <icu4j.version>78.3</icu4j.version>
     ```
 
+    or change it from from command line:
+
+    ```sh
+    mvn versions:set-property \
+      -Dproperty=icu4j.version \
+      -DnewVersion=78.3 \
+      -DgenerateBackupPoms=false
+    ```
+
     Before ICU 78 the versions was directly on the `<dependency>`:
 
     ```xml
@@ -23,7 +32,23 @@
     mvn package
     ```
 
-## RUNNING WITH [docker](https://docker.io)
+## Running without [docker](https://docker.io)
+
+```sh
+# Run without rebuilding:
+mvn cargo:run
+# Or build, and run:
+mvn package cargo:run
+# Or even clean, build, and run:
+mvn clean package cargo:run
+```
+
+The application will be available at http://localhost:8080/
+
+**Note:** this is convenient for development, but we still recommend testing
+with docker before deployment.
+
+## Running with [docker](https://docker.io)
 
 Note that this does not rebuild the demos, but just creates a new docker image for running locally.
 
