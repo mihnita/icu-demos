@@ -1,0 +1,102 @@
+<%@ page pageEncoding="UTF-8" %>
+<%@ page import="com.ibm.icu.util.ULocale" %>
+<%@ page import="com.ibm.icu.dev.demo.icu4jweb.WebUtil" %>
+<%
+    String servletPath = request.getServletPath();
+    String activePage = "";
+    if (servletPath.startsWith("/bidi")) activePage = "bidi";
+    else if (servletPath.startsWith("/formatTest")) activePage = "formatTest";
+    else if (servletPath.startsWith("/interval")) activePage = "interval";
+    else if (servletPath.startsWith("/patina")) activePage = "patina";
+    else if (servletPath.startsWith("/numero")) activePage = "numero";
+    else if (servletPath.startsWith("/flexTest")) activePage = "flexTest";
+    else if (servletPath.startsWith("/tuthu")) activePage = "tuthu";
+    else if (servletPath.startsWith("/testLocale")) activePage = "testLocale";
+    else if (servletPath.startsWith("/escaper")) activePage = "escaper";
+    
+    ULocale reqLocale = (ULocale) request.getAttribute("locale");
+    if (reqLocale == null) {
+        reqLocale = ULocale.getDefault();
+    }
+%>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ICU4J Web Demos</title>
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/icu4jweb.css" type="text/css" />
+    <link href="<%= request.getContextPath() %>/favicon.ico" type="image/x-icon" rel="shortcut icon" />
+</head>
+<body>
+
+<div class="dashboard">
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar">
+        <a href="<%= request.getContextPath() %>/index" class="sidebar-brand">
+            ICU4J <span>Demos</span>
+        </a>
+        
+        <ul class="nav-menu">
+            <li class="nav-item <%= "bidi".equals(activePage) ? "active" : "" %>">
+                <a href="<%= request.getContextPath() %>/bidi">BiDi Run Finder</a>
+            </li>
+            <li class="nav-item <%= "formatTest".equals(activePage) ? "active" : "" %>">
+                <a href="<%= request.getContextPath() %>/formatTest">Message Formatter</a>
+            </li>
+            <li class="nav-item <%= "interval".equals(activePage) ? "active" : "" %>">
+                <a href="<%= request.getContextPath() %>/interval">Date Interval Format</a>
+            </li>
+            <li class="nav-item <%= "patina".equals(activePage) ? "active" : "" %>">
+                <a href="<%= request.getContextPath() %>/patina">Patina (Date Attributes)</a>
+            </li>
+            <li class="nav-item <%= "numero".equals(activePage) ? "active" : "" %>">
+                <a href="<%= request.getContextPath() %>/numero">Number Spellout (Numero)</a>
+            </li>
+            <li class="nav-item <%= "flexTest".equals(activePage) ? "active" : "" %>">
+                <a href="<%= request.getContextPath() %>/flexTest">Flex Pattern Generator</a>
+            </li>
+            <li class="nav-item <%= "tuthu".equals(activePage) ? "active" : "" %>">
+                <a href="<%= request.getContextPath() %>/tuthu">Tuesdays & Thursdays</a>
+            </li>
+            <li class="nav-item <%= "testLocale".equals(activePage) ? "active" : "" %>">
+                <a href="<%= request.getContextPath() %>/testLocale">Fallback Candidate List</a>
+            </li>
+            <li class="nav-item <%= "escaper".equals(activePage) ? "active" : "" %>">
+                <a href="<%= request.getContextPath() %>/escaper">Unicode Hex Escaper</a>
+            </li>
+        </ul>
+    </aside>
+
+    <!-- Main Content Panel -->
+    <main class="main-content">
+        <header class="page-header">
+            <div class="page-title">
+                <h1>
+                    <% if ("bidi".equals(activePage)) { %> BiDi Run Finder
+                    <% } else if ("formatTest".equals(activePage)) { %> Message Formatter
+                    <% } else if ("interval".equals(activePage)) { %> Date Interval Format
+                    <% } else if ("patina".equals(activePage)) { %> Patina (Date Attributes)
+                    <% } else if ("numero".equals(activePage)) { %> Number Spellout
+                    <% } else if ("flexTest".equals(activePage)) { %> Flex Pattern Generator
+                    <% } else if ("tuthu".equals(activePage)) { %> Tuesdays & Thursdays
+                    <% } else if ("testLocale".equals(activePage)) { %> Fallback Candidate List
+                    <% } else if ("escaper".equals(activePage)) { %> Unicode Hex Escaper
+                    <% } else { %> Welcome to ICU4J Web Demos
+                    <% } %>
+                </h1>
+                <p>
+                    <% if ("bidi".equals(activePage)) { %> Extract BiDi layout level text runs using ICU4J Bidi API
+                    <% } else if ("formatTest".equals(activePage)) { %> Test and analyze ICU4J vs Java MessageFormat patterns
+                    <% } else if ("interval".equals(activePage)) { %> Format date intervals elegantly in any language
+                    <% } else if ("patina".equals(activePage)) { %> Format dates and highlight internal calendar field attributes
+                    <% } else if ("numero".equals(activePage)) { %> Spell out numeric values in words across global locales
+                    <% } else if ("flexTest".equals(activePage)) { %> Generate best locale patterns dynamically using DateTimePatternGenerator
+                    <% } else if ("tuthu".equals(activePage)) { %> Calculate and format calendar weekdays for a given year
+                    <% } else if ("testLocale".equals(activePage)) { %> View candidates list for fallbacks in JDK and ICU4J
+                    <% } else if ("escaper".equals(activePage)) { %> Dump a string into UTF-8, UTF-16, and UTF-32 hex representations
+                    <% } else { %> Interactive showcases for Unicode & Internationalization APIs in Java
+                    <% } %>
+                </p>
+            </div>
+        </header>

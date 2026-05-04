@@ -1,0 +1,9 @@
+<%@ page pageEncoding="UTF-8" %>
+        <footer class="footer">
+            <p>Powered by <a href="https://icu.unicode.org/">ICU4J</a> <%= com.ibm.icu.util.VersionInfo.ICU_VERSION %> &bull; Java <%= System.getProperty("java.version") %></p>
+        </footer>
+    </main>
+</div>
+
+</body>
+</html>

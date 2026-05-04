@@ -25,12 +25,20 @@ Copyright © 2016 and later Unicode, Inc. and others. All Rights Reserved.
     <maven.compiler.release>11</maven.compiler.release>
 
     <!-- Dependencies versions -->
-    <!-- UPDATE THE VERSION TO BUILD AND DEPLOY -->
+    <!-- UPDATE THE ICU4J VERSION TO BUILD AND DEPLOY -->
     <icu4j.version>78.3</icu4j.version>
     <junit.version>4.13.2</junit.version>
     <!-- Dependencies versions - END -->
 
+    <!-- Keep this info in sync with the Dockerfile
+         See here a complete list of supported containers:
+         https://codehaus-cargo.github.io/cargo/Container.html
+    -->
+    <cargo.containerId>tomcat9x</cargo.containerId>
+    <cargo.servlet.port>8080</cargo.servlet.port>
+
     <!-- Plugin versions -->
+    <cargo-maven3-plugin.version>1.10.27</cargo-maven3-plugin.version>
     <maven-clean-plugin.version>3.5.0</maven-clean-plugin.version>
     <maven-compiler-plugin.version>3.15.0</maven-compiler-plugin.version>
     <maven-deploy-plugin.version>3.1.4</maven-deploy-plugin.version>
@@ -47,6 +55,18 @@ Copyright © 2016 and later Unicode, Inc. and others. All Rights Reserved.
       <groupId>com.ibm.icu</groupId>
       <artifactId>icu4j</artifactId>
       <version>${icu4j.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>javax.servlet</groupId>
+      <artifactId>javax.servlet-api</artifactId>
+      <version>4.0.1</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>javax.servlet.jsp</groupId>
+      <artifactId>javax.servlet.jsp-api</artifactId>
+      <version>2.3.3</version>
+      <scope>provided</scope>
     </dependency>
     <dependency>
       <groupId>junit</groupId>
@@ -88,6 +108,36 @@ Copyright © 2016 and later Unicode, Inc. and others. All Rights Reserved.
         <plugin>
           <artifactId>maven-deploy-plugin</artifactId>
           <version>${maven-deploy-plugin.version}</version>
+        </plugin>
+        <plugin>
+          <!-- To run:
+              mvn package cargo:run
+              The application will be available at http://localhost:8080/
+            -->
+          <groupId>org.codehaus.cargo</groupId>
+          <artifactId>cargo-maven3-plugin</artifactId>
+          <version>${cargo-maven3-plugin.version}</version>
+          <configuration>
+            <container>
+              <!-- Keep this in sync with the Dockerfile -->
+              <containerId>${cargo.containerId}</containerId>
+            </container>
+            <configuration>
+              <properties>
+                <cargo.servlet.port>${cargo.servlet.port}</cargo.servlet.port>
+              </properties>
+            </configuration>
+            <deployables>
+              <deployable>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>${project.artifactId}</artifactId>
+                <type>war</type>
+                <properties>
+                  <context>/</context>
+                </properties>
+              </deployable>
+            </deployables>
+          </configuration>
         </plugin>
       </plugins>
     </pluginManagement>
