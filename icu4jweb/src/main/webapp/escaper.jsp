@@ -20,10 +20,16 @@
     String s = request.getParameter("v");
     if(s==null) s="";
 
+    final int codePointCount[] = { 0 };
+    StringJoiner utf32Dump = new StringJoiner(", ", "{ ", " }");
+    s.codePoints().forEach(cp -> {
+        codePointCount[0]++;
+        utf32Dump.add("0x" + Integer.toHexString(cp));
+    });
+    utf32Dump.add("0");
+
     StringJoiner utf16Dump = new StringJoiner(", ", "{ ", " }");
-    for (int i = 0; i < s.length(); i++) {
-        utf16Dump.add("0x" + Integer.toHexString(((int) s.charAt(i)) & 0xFFFF));
-    }
+    s.chars().forEach(ch16 -> utf16Dump.add("0x" + Integer.toHexString(ch16 & 0xffff)));
     utf16Dump.add("0");
 
     StringJoiner utf8Dump = new StringJoiner(", ", "{ ", " }");
@@ -42,8 +48,14 @@
 
 <hr>
 
-<tt>const UChar u16chars[<%= s.length() + 1 %>] = <%= utf16Dump %>; /* <%= escapeString(s) %> */</tt><br>
-<tt>const uint8_t u8chars[<%= bytes.length + 1 %>] = <%= utf8Dump %>; /* <%= escapeString(s) %> */</tt>
+<blockquote><code>
+// UTF-8<br>
+const uint8_t u8chars[<%= bytes.length + 1 %>] = <%= utf8Dump %>; /* <%= escapeString(s) %> */<br>
+// UTF-16<br>
+const UChar u16chars[<%= s.length() + 1 %>] = <%= utf16Dump %>; /* <%= escapeString(s) %> */<br>
+// UTF-32<br>
+const UChar32 u32chars[<%= codePointCount[0] + 1 %>] = <%= utf32Dump %>; /* <%= escapeString(s) %> */<br>
+</code></blockquote>
 
 </body>
 </html>
