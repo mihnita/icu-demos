@@ -19,7 +19,8 @@ String demolist_jsps[] = {
         "tuthu", 
         "testLocale", 
         //"uri",
-        "escaper" };
+        "escaper",
+        "collation" };
 
   String title = request.getServletPath();
   if(title.startsWith("/")) {
