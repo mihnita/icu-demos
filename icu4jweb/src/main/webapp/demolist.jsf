@@ -12,6 +12,7 @@ String demolist_jsps[] = {
         "formatTest", 
         //"files_all", 
         // "icuinfo", // Obsoleted in Version 71.1.
+        "collation",
         "interval",
         "patina",
         "numero",
