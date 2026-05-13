@@ -28,6 +28,7 @@ ICU_COMMON_HEADERS=$(ICU_SOURCE)/common
 
 
 include $(ICU_INC)
+CFLAGS += -std=gnu11
 
 # Name of your target
 TARGET=translit

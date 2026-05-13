@@ -22,7 +22,7 @@ U_CAPI UTimeZone *utz_open(const UChar *id);
 
 U_CAPI UTimeZone *utz_openDefault();
 
-U_CAPI int getID(const UTimeZone *zone, char *idbuf, int idlen);
+U_CAPI int utz_getID(const UTimeZone *zone, char *idbuf, int idlen);
 
 U_CAPI void utz_close(UTimeZone* zone);
 

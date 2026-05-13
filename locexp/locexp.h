@@ -252,6 +252,7 @@ extern void chooseConverterMatching(LXContext *lx, const char *restored, UChar *
 
 extern void chooseConverterFrom(LXContext *lx, const char *restored, USort *list);
 extern void showOneLocale(LXContext *lx);
+extern void printBigString(LXContext *lx, const UChar *str);
 void showExploreBreak(LXContext *lx, const char *locale);
 
 /* fcns for dumping the contents of a particular rb */
@@ -279,6 +280,7 @@ extern void showSortStyle( LXContext *lx );
 
 extern void showExploreDateTimePatterns( LXContext *lx, UResourceBundle *rb, const char *locale);
 extern void showExploreNumberPatterns  ( LXContext *lx, const char *locale);
+extern void showNumberSystem(LXContext *lx, const char *locale, const char *nsys);
 
 extern const char *keyToSection( const char *key);
 extern void showExploreButtonPicture( LXContext *lx );

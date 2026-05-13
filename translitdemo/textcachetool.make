@@ -14,6 +14,7 @@ ICU_INC=/usr/local/lib/icu/Makefile.inc
 ###########################################
 
 include $(ICU_INC)
+CFLAGS += -std=gnu11
 
 # Name of your target
 TARGET=tct
