@@ -1,11 +1,11 @@
 # © 2016 and later: Unicode, Inc. and others.
 # License & terms of use: http://www.unicode.org/copyright.html
 
-FROM alpine:latest as build
+FROM alpine:latest AS build
 LABEL maintainer="srl@icu-project.org"
 
 USER root
-ENV HOME /home/build
+ENV HOME=/home/build
 
 RUN apk --update add gcc make python3 g++ ccache valgrind pkgconfig doxygen tar zip curl wget git bash bsd-compat-headers
 RUN addgroup build && adduser -g "Build user" -h $HOME -S -G build -D -s /bin/sh build
@@ -23,7 +23,7 @@ USER build
 
 # Wanted to use this: --wildcards -s '%icu[^/]*%%' 
 
-ENV LD_LIBRARY_PATH /usr/local/lib
+ENV LD_LIBRARY_PATH=/usr/local/lib
 
 # Make sure ICU is installed and working
 # VOLUME /mnt/icu
@@ -44,7 +44,7 @@ RUN /home/build/src/configure  --prefix=${PREFIX} ICU_CONFIG=$(which icu-config)
 #RUN make all
 RUN cp -R /home/build/src/translitdemo /home/build/icu/translitdemo
 
-FROM alpine:latest as httpd
+FROM alpine:latest AS httpd
 USER root
 ARG ICU_PATH
 ENV ICU_PATH=${ICU_PATH}
@@ -54,7 +54,7 @@ COPY --from=build /home/build/icu /home/build/icu
 RUN if [ $ICU_PATH = "system" ]; then apk --update add icu-dev; \
  else apk --update add libstdc++ && cp -Rv /home/build/icu/ICU/ICU/usr/usr / && rm -rf /home/build/icu/ICU/usr ; fi
 RUN if [ -d /home/build/icu/usr/local ]; then (cd /home/build/icu/usr/; ln -sv local/* .); fi; ls -l /home/build/icu/usr/bin/
-ENV LD_LIBRARY_PATH /home/build/icu/usr/lib
+ENV LD_LIBRARY_PATH=/home/build/icu/usr/lib
 EXPOSE 8080
 # this needs special treatment
 RUN cp -v /home/build/icu/usr/bin/data/collation.html /var/www/localhost/htdocs/ || true
