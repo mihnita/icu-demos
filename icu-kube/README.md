@@ -12,8 +12,9 @@ releases](https://github.com/unicode-org/icu/tags):
 
 Run this from the icu-demos directory:
 ```
-export RELEASE_PATH=https://github.com/unicode-org/icu/releases/download/release-70-1
-export LIB_TGZ=icu4c-70_1-src.tgz
+export ICU_VER=78.3
+export RELEASE_PATH=https://github.com/unicode-org/icu/releases/download/release-${ICU_VER}
+export LIB_TGZ=icu4c-${ICU_VER}-sources.tgz
 export RELEASE_LIB=$RELEASE_PATH/$LIB_TGZ
 
 echo $RELEASE_LIB
@@ -24,7 +25,7 @@ docker build --build-arg ICU_PATH=$RELEASE_LIB -t icu4c-demos:my-demos  . -f icu
 - If all goes well, you can now run
 
 ```sh
-docker run --rm -p 8888:8080 icu4c-demos:my-demos
+docker run --name icu4c-demos --rm -p 8888:8080 icu4c-demos:my-demos
 ```
 
 … That will serve up the demos at http://localhost:8888/icu-bin/icudemos
