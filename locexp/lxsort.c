@@ -4,6 +4,7 @@
 ***********************************************************************/
 
 #include "locexp.h"
+#include "unicode/rescompat.h"
 #include "unicode/udata.h"
 #include "unicode/usearch.h"
 /* #include "uresimp.h" */

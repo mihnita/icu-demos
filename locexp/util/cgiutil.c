@@ -9,6 +9,7 @@
  */
 
 #include "unicode/cgiutil.h"
+#include "unicode/lx_utils.h"
 #include <unicode/ustdio.h>
 #include "unicode/unum.h"
 #include <stdarg.h>

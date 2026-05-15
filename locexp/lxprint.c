@@ -7,6 +7,7 @@
 
 
 #include "locexp.h"
+#include "unicode/rescompat.h"
 #include <unicode/uscript.h>
 #include <unicode/ulocdata.h>
 /* #include "uresimp.h" */

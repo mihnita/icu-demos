@@ -88,3 +88,7 @@ endif
 
 # optional override file
 -include $(top_srcdir)/icuapps-mk.local
+
+# Enable standard POSIX / GNU C extensions globally (for strdup, strcasecmp, putenv)
+CFLAGS += -std=gnu11
+SHAREDLIBCFLAGS += -std=gnu11

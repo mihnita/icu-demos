@@ -1320,7 +1320,7 @@ main(int argc,
 
   if(anyDecompose)
     {
-      u_fprintf(FSWF("NOTE_ANY_DECOMPOSE", "Note: text in <span class='anydecompose'>Italic Green</span> is the best-try using decomposition. Underscore (_) denotes missing characters in the decomposition."/*Note about green text*/), gOut);
+      u_fprintf(gOut, "%S", FSWF("NOTE_ANY_DECOMPOSE", "Note: text in <span class='anydecompose'>Italic Green</span> is the best-try using decomposition. Underscore (_) denotes missing characters in the decomposition."/*Note about green text*/));
     }
 
   uvi[0]=0xFF;

@@ -48,7 +48,7 @@ OBJECTS += unumsys.o
 
 #OBJECTS +=  collectcb.o translitcb.o  kannada.o
 
-HEADERS = unicode/decompcb.h unicode/lx_utils.h unicode/ures_additions.h unicode/kangxi.h unicode/collectcb.h unicode/translitcb.h  unicode/cgiutil.h unicode/unumsys.h
+HEADERS = unicode/decompcb.h unicode/lx_utils.h unicode/ures_additions.h unicode/kangxi.h unicode/collectcb.h unicode/translitcb.h  unicode/cgiutil.h unicode/unumsys.h unicode/rescompat.h
 
 ## fontedcd  support
 #OBJECTS += fontedcb.o devanagari.o
