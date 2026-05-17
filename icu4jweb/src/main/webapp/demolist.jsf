@@ -18,6 +18,7 @@ String demolist_jsps[] = {
         "flexTest",
         "tuthu", 
         "testLocale", 
+        "localeExplorer",
         //"uri",
         "escaper" };
 
