@@ -18,7 +18,9 @@ String demolist_jsps[] = {
         "flexTest",
         "tuthu", 
         "testLocale", 
+        "localeinfo",
         //"uri",
+        "translit",
         "escaper" };
 
   String title = request.getServletPath();

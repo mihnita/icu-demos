@@ -1,0 +1,14 @@
+{
+  "id":  "cd3be739-97e1-4a3b-9e59-a106f964a758",
+  "name":  "/Users/mnita/third_party/icu_work/icu-demos.mihnita/icu4jweb",
+  "projectResources":  {
+    "resources":  [
+      {
+        "gitFolder":  {
+          "folderUri":  "file:///Users/mnita/third_party/icu_work/icu-demos.mihnita/icu4jweb",
+          "allowWrite":  true
+        }
+      }
+    ]
+  }
+}
