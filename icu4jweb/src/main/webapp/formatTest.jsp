@@ -9,8 +9,7 @@
   <meta content="George Rhoten" name="AUTHOR" />
   <meta content="Copyright (c) 2008-2013 IBM Corporation and others. All Rights Reserved." name="COPYRIGHT" />
   <title>Format Tester</title>
-  				<script type="text/javascript" src="dojo.js"></script>
- 
+  <script type="text/javascript" src="dojo.js"></script>
 <%@ include file="demohead.jsf" %>
 <%!
 static final String STR = "str";
@@ -172,7 +171,7 @@ function setArgumentBase(selectNode) {
         var argNode = document.getElementById('arg' + argIdx);
         argNode.innerHTML = argIdx + baseNum;
     }
-    
+
 }
 
 var myInterval  = -1;
@@ -181,17 +180,17 @@ var myInterval  = -1;
 function msgBlur( /* event */ e) {
 	var msg = dojo.byId("msg");
 	var msgAnalysis = dojo.byId("msgAnalysis");
-	
+
 	if(msgAnalysis != null) {
 		//msgAnalysis.innerHTML = "<i>Updating...</i><hr>" + msgAnalysis.innerHTML;
-		dojo.xhrGet( 
-				{ 
+		dojo.xhrGet(
+				{
 					url:	'formatAnalyze.jsp',
 					handleAs: 'text',
 					content:  {
 						"msg": msg.value
 					},
-					
+
 					load: function(d) {
 							msgAnalysis.innerHTML = d;
 						},
@@ -204,7 +203,7 @@ function msgBlur( /* event */ e) {
 }
 
 function msgFocus( /* event */ e) {
-	
+
 }
 
 
@@ -219,7 +218,7 @@ dojo.addOnLoad(function(){
 //]]>
 </script>
 </head>
-<body style="margin: 0.5em">
+<body>
 <%@ include file="demolist.jsf" %>
 
 <h2>Format Tester</h2>
