@@ -23,6 +23,7 @@ String demolist_jsps[] = {
         "collation",
         "localeExplorer",
         "translit",
+        "ubrowse",
   };
 
   String title = request.getServletPath();
