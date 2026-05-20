@@ -888,54 +888,6 @@
             <% } %>
         </table>
 
-        <!-- E.3 Detailed Search Forms -->
-        <h3 class="section_title">Find Characters</h3>
-        <div class="search_form_box">
-            <table border="0">
-                <!-- 1. Find Block Dropdown -->
-                <form action="<%= request.getContextPath() + request.getServletPath() %>" method="get">
-                    <tr>
-                        <td><label for="search_block">Block: </label></td>
-                        <td>
-                            <select id="search_block" name="scr">
-                                <% for (BlockInfo bi : sortedBlocks) { %>
-                                    <option value="<%= bi.name %>"><%= bi.name %></option>
-                                <% } %>
-                            </select>
-                        </td>
-                        <td><input type="submit" value="Browse Block" /></td>
-                    </tr>
-                </form>
-                <!-- 2. Find Category Dropdown -->
-                <form action="<%= request.getContextPath() + request.getServletPath() %>" method="get">
-                    <tr>
-                        <td><label for="search_category">Category: </label></td>
-                        <td>
-                            <select id="search_category" name="typ">
-                                <% for (int catId : validCatIds) { 
-                                    String catName = UCharacter.getPropertyValueName(UProperty.GENERAL_CATEGORY, catId, UProperty.NameChoice.LONG);
-                                %>
-                                    <option value="<%= catId %>"><%= catName %></option>
-                                <% } %>
-                            </select>
-                        </td>
-                        <td><input type="submit" value="Browse Category" /></td>
-                    </tr>
-                </form>
-                <!-- 3. Find by Name input -->
-                <form action="<%= request.getContextPath() + request.getServletPath() %>" method="get">
-                    <tr>
-                        <td><label for="search_name">Name: </label></td>
-                        <td>
-                            <input id="search_name" type="text" name="s" size="25" />
-                            <input id="search_exact" type="checkbox" name="sx" />
-                            <label for="search_exact">Exact?</label>
-                        </td>
-                        <td><input type="submit" value="Search by Name" /></td>
-                    </tr>
-                </form>
-            </table>
-        </div>
     <% } %>
 
     <hr style="border: 1px solid #ccc; margin-top: 25px; margin-bottom: 15px;" />

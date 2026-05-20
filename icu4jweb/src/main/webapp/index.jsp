@@ -8,6 +8,9 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <%@ include file="demohead.jsf" %>
 <title>ICU4J Web Demos</title>
+<style>
+  dl.demos_toc dt { margin: 1em; font-weight: bold; }
+</style>
 </head>
 <body>
 
@@ -15,8 +18,16 @@
 
 <h2>ICU4J Web Demos</h2>
 
+<p>Here are <%= demolist_new.length %> demos that show different capabilities of the ICU library:</p>
 
-Welcome. Please choose a demo on the right.
+<div>
+<dl class="demos_toc">
+  <% for (Demo demo : demolist_new) { %>
+    <dt><a href="<%= demo.file %>.jsp"><%= demo.name %></a></dt>
+    <dd><%= demo.description %></dd>
+  <% } %>
+</dl>
+</div>
 
 <hr/>
 Welcome to ICU4J <%= com.ibm.icu.util.VersionInfo.ICU_VERSION %>

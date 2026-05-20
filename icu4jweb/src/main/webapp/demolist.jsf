@@ -2,30 +2,56 @@
     pageEncoding="utf-8"%>
   <!--  content="Copyright (c) 2008-2010 IBM Corporation and others. All Rights Reserved." name="COPYRIGHT" -->
 
+<%!
+static class Demo {
+  final String file;
+  final String name;
+  final String description;
+
+  public Demo(String file, String name, String description) {
+    this.file = file;
+    this.name = name;
+    this.description = description;
+  }
+}
+%>
+
 <%
 
 request.setCharacterEncoding("utf-8"); // Shouldn't have to do this.
 
 String demolist_base=request.getContextPath();
-String demolist_jsps[] = {
-        "bidi",
-        "formatTest",
-        //"files_all",
-        // "icuinfo", // Obsoleted in Version 71.1.
-        "interval",
-        "patina",
-        "numero",
-        "flexTest",
-        "tuthu",
-        "testLocale",
-        //"uri",
-        "escaper",
-        "collation",
-        "localeExplorer",
-        "segments",
-        "translit",
-        "ubrowse",
-  };
+
+Demo demolist_new[] = {
+  new Demo("bidi", "BiDi", "<span style='color:red'>TO DELETE?</span> Very basic."),
+  new Demo("formatTest", "Formatting messages", "Format messages with the"
+      + " <a href=\"https://unicode-org.github.io/icu-docs/apidoc/dev/icu4j/com/ibm/icu/text/MessageFormat.html\">ICU4J <code>MessageFormat</code></a>,"
+      + " <a href=\"https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/text/MessageFormat.html\">Java <code>MessageFormat</code></a>, and "
+      + " <a href=\"https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html#format(java.util.Locale,java.lang.String,java.lang.Object...)\">Java <code>String.format</code></a>."),
+  // new Demo("files_all", "Files-All", "<span style='color:red'>TO DELETE?</span> Fails"),
+  // new Demo("icuinfo", "ICU Info", "<span style='color:red'>TO DELETE?</span> Fails"), // Obsoleted in Version 71.1.
+  new Demo("interval", "Interval", "Date and time interval formatting"),
+  new Demo("patina", "Pattern manipulation", "Date and time patterns"),
+  new Demo("numero", "Number spellout", "Number spellout"),
+  new Demo("flexTest", "Date-time flexible formatting", "Date and time formatting using skeletons"),
+  new Demo("tuthu","Tuesday and Thursday", "The names of Tuesday and Thursday in various languages"),
+  new Demo("testLocale","Test locale", "<span style='color:red'>TO DELETE?</span> Very basic"),
+  // new Demo("uri", "URI", "<span style='color:red'>TO DELETE?</span> Very basic"),
+  new Demo("escaper","Escaper", "Convert string to C/C++ arrays of UTF-8, UTF-16 and UTF-32 code units"),
+  new Demo("collation", "Collation", "Demonstrates Collation"),
+  new Demo("localeExplorer", "Locale Explorer",
+    "Illustrates the International Components for Unicode localization data."
+  ),
+  new Demo("segments", "ICU Segments",
+    "Shows various ICU Segmentation (BreakIterator) boundaries"
+  ),
+  new Demo("translit", "Transforms",
+    "Shows ICU transforms in action. Users can see the effect of various built-in and user written system transforms on text they type in. Rules for transforms may be viewed, edited, and saved for later use."
+  ),
+  new Demo("ubrowse", "Unicode Character Browser",
+    "An interactive database of the Unicode character set. It uses the ICU character properties to search by character type, or display the type of a given character."
+  ),
+};
 
   String title = request.getServletPath();
   if(title.startsWith("/")) {
@@ -54,10 +80,10 @@ String demolist_jsps[] = {
 <div class='demoList'>
 
 <b><a href="http://icu-project.org">ICU4J</a> <a href="<%= demolist_base %>">Web Demos</a></b>:<br/>
-   <% for (String demolist_jsp : demolist_jsps) {
-        boolean bold = request.getServletPath().startsWith("/"+demolist_jsp);
-		String linkClass = bold?"currentDemo":"otherDemo";
-    %>
-      <div class="<%= linkClass %>"><a href="<%= demolist_base+"/"+demolist_jsp %>.jsp"><%= demolist_jsp %></a></div>
+   <% for (Demo demo : demolist_new) {
+        boolean bold = request.getServletPath().startsWith("/" + demo.file);
+		String linkClass = bold ? "currentDemo" : "otherDemo";
+   %>
+      <div class="<%= linkClass %>"><a href="<%= demolist_base+"/"+demo.file %>.jsp"><%= demo.name %></a></div>
    <% } %>
 </div>

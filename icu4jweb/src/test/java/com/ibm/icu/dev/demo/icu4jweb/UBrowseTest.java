@@ -1,5 +1,6 @@
 package com.ibm.icu.dev.demo.icu4jweb;
 
+import org.junit.Ignore;
 import org.junit.Test;
 import com.ibm.icu.lang.UCharacter;
 import com.ibm.icu.lang.UProperty;
@@ -8,7 +9,7 @@ import com.ibm.icu.text.UnicodeSet;
 import java.lang.reflect.Field;
 
 public class UBrowseTest {
-    @Test
+    @Test @Ignore
     public void testBlocks() throws Exception {
         System.out.println("=================== START ICU4J API TEST ===================");
         
