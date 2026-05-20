@@ -1,0 +1,19 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(mvn package *)",
+      "Bash(mvn cargo:run)",
+      "Bash(echo \"Server starting in background with PID: $!\")",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:8080/segments.jsp)",
+      "Bash(curl -s http://localhost:8080/segments.jsp)",
+      "Bash(python3 -c \"import sys,html; print\\(html.unescape\\(sys.stdin.read\\(\\)\\)\\)\")",
+      "Bash(taskkill /F /IM java.exe)",
+      "Bash(taskkill //F //IM java.exe)",
+      "Bash(curl -s \"http://localhost:8080/segments.jsp?type=sentence&text=Hello+world.+How+are+you?+Fine.&locale=en\")",
+      "Bash(curl -s \"http://localhost:8080/segments.jsp?type=character&text=Hello+%F0%9F%91%A8%E2%80%8D%F0%9F%91%A9%E2%80%8D%F0%9F%91%A7&locale=en\")",
+      "Bash(curl -s \"http://localhost:8080/segments.jsp?type=line&text=Hello+World%21+How+are+you?&locale=en\")",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:8080/)",
+      "Bash(curl -s http://localhost:8080/)"
+    ]
+  }
+}

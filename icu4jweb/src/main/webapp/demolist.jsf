@@ -22,6 +22,7 @@ String demolist_jsps[] = {
         "escaper",
         "collation",
         "localeExplorer",
+        "segments",
         "translit",
         "ubrowse",
   };
