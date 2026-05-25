@@ -51,6 +51,12 @@ Demo demolist_new[] = {
   new Demo("ubrowse", "Unicode Character Browser",
     "An interactive database of the Unicode character set. It uses the ICU character properties to search by character type, or display the type of a given character."
   ),
+  new Demo("idna", "IDNA Browser",
+    "Converts internationalized domain names between Unicode and"
+    + " <a href=\"https://www.rfc-editor.org/rfc/rfc3492\">Punycode / ACE</a> (ASCII Compatible Encoding)"
+    + " using <a href=\"https://www.unicode.org/reports/tr46/\">UTS #46</a>"
+    + " via <a href=\"https://unicode-org.github.io/icu-docs/apidoc/dev/icu4j/com/ibm/icu/text/IDNA.html\"><code>com.ibm.icu.text.IDNA</code></a>."
+  ),
 };
 
   String title = request.getServletPath();

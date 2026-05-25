@@ -13,7 +13,20 @@
       "Bash(curl -s \"http://localhost:8080/segments.jsp?type=character&text=Hello+%F0%9F%91%A8%E2%80%8D%F0%9F%91%A9%E2%80%8D%F0%9F%91%A7&locale=en\")",
       "Bash(curl -s \"http://localhost:8080/segments.jsp?type=line&text=Hello+World%21+How+are+you?&locale=en\")",
       "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:8080/)",
-      "Bash(curl -s http://localhost:8080/)"
+      "Bash(curl -s http://localhost:8080/)",
+      "WebFetch(domain:icu4c-demos.unicode.org)",
+      "Bash(echo \"Server starting, PID: $!\")",
+      "Bash(curl -s \"http://localhost:8080/idna.jsp\")",
+      "Bash(curl -s \"http://localhost:8080/idna.jsp?a=www.%E6%97%A5%E6%9C%AC%E5%B9%B3.jp\")",
+      "Bash(python3 -c \"import sys; content=sys.stdin.read\\(\\); start=content.find\\('Root Cause'\\); print\\(content[start:start+2000]\\)\")",
+      "Bash(grep -v \"^$\")",
+      "Bash(mvn dependency:build-classpath -q -DincludeArtifactIds=icu4j -Dmdep.outputFile=/tmp/icu4j_path.txt)",
+      "Read(//tmp/**)",
+      "Bash(javap -classpath \"C:\\\\Users\\\\mihai\\\\.m2\\\\repository\\\\com\\\\ibm\\\\icu\\\\icu4j\\\\78.3\\\\icu4j-78.3.jar\" com.ibm.icu.text.IDNA)",
+      "Bash(grep -v \"^[[:space:]]*$\")",
+      "Bash(echo \"PID: $!\")",
+      "Bash(curl -s \"http://localhost:8080/\")",
+      "Bash(curl -s \"http://localhost:8080/idna.jsp?a=xn--bcher-kva.de\")"
     ]
   }
 }
